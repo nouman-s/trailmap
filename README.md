@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trailmap — Marketing Platform for Financial Advisors
+
+A premium, fully-functional Next.js frontend prototype for event-driven marketing campaigns.
+
+## Features
+
+### Core Pages
+- **Dashboard** — KPI cards, upcoming events, recent orders, pending approvals table, quick actions
+- **Campaigns** — Filterable grid with search, status badges, budget progress bars
+- **Campaign Detail** — Tabbed view (Overview, Confirmation, Settings, Links) with editable forms
+- **Orders** — Searchable table (desktop) / card list (mobile) with full status lifecycle
+- **Order Detail** — Visual status stepper, role-based action buttons, detailed info
+- **New Order Wizard** — 5-step guided flow with progress bar, validation, event type cards, targeting profiles
+- **Reporting** — Interactive Recharts charts, KPI summaries, channel & campaign performance tables, CSV export
+- **Notifications** — Categorized feed (Unread/Read/Archived) with type-colored icons, relative timestamps
+- **Profiles & Preferences** — 4 tabs (Contacts, Personas, Targeting, Communication) with editable cards
+
+### Polish
+- Dark/Light mode toggle (via next-themes)
+- Role-based demo switcher (Client / Internal / Admin) — changes visible actions
+- Toast notifications on every action (via Sonner)
+- Loading skeletons on all pages
+- Empty states with icons
+- Responsive design — sidebar collapses on mobile
+- Persistent state via Zustand + localStorage
+- Status lifecycle: Draft -> Submitted -> Under Review -> Approved -> In Progress -> Completed
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS v4** (CSS-based config)
+- **Radix UI** primitives (shadcn-style components)
+- **Lucide React** icons
+- **Recharts** for charts
+- **Zustand** for state management (with localStorage persistence)
+- **Sonner** for toast notifications
+- **next-themes** for dark mode
+- **date-fns** for date formatting
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Dashboard
+│   ├── campaigns/         # Campaign list + [id] detail
+│   ├── orders/            # Order list + [id] detail
+│   ├── new-order/         # Multi-step wizard
+│   ├── reporting/         # Charts & tables
+│   ├── notifications/     # Notification feed
+│   └── profiles/          # Profiles & preferences
+├── components/
+│   ├── ui/                # Reusable UI components (shadcn-style)
+│   ├── layout/            # Sidebar, TopBar, AppShell
+│   └── providers.tsx      # Theme + Toast providers
+└── lib/
+    ├── mock-data.ts       # All mock data
+    ├── store.ts           # Zustand store
+    ├── types.ts           # TypeScript types
+    └── utils.ts           # Utility functions
+```
