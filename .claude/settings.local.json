@@ -3,7 +3,19 @@
     "allow": [
       "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
       "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --no-react-compiler)",
-      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --no-react-compiler --yes)"
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --no-react-compiler --yes)",
+      "Bash(npm install:*)",
+      "Bash(wc:*)",
+      "Bash(npm run:*)",
+      "Bash(ls:*)",
+      "Bash(git -C /c/laragon/www/trailmap status)",
+      "Bash(git -C /c/laragon/www/trailmap status -u)",
+      "Bash(git:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(npx vercel:*)",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel:*)"
     ]
   }
 }

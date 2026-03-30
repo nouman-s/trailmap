@@ -143,3 +143,47 @@ export interface NewOrderFormData {
   landingPageStyle: string;
   // Step 5 - review
 }
+
+export interface Template {
+  id: string;
+  name: string;
+  description: string;
+  type: "campaign" | "order" | "asset";
+  eventType?: EventType;
+  thumbnail?: string;
+  usageCount: number;
+  lastUsed?: string;
+  createdAt: string;
+  isPopular?: boolean;
+}
+
+export interface Strategy {
+  id: string;
+  name: string;
+  description: string;
+  targetAudience: string;
+  recommendedChannels: string[];
+  expectedROI: string;
+  successRate: number;
+  avgBudget: string;
+  conversionRate: string;
+  metrics: {
+    leads: number;
+    conversion: number;
+    retention: number;
+  };
+}
+
+export interface TargetingInsight {
+  id: string;
+  name: string;
+  category: string;
+  data: {
+    age: string;
+    income: string;
+    interests: string[];
+    behaviors: string[];
+  };
+  performance: "excellent" | "good" | "average" | "poor";
+  recommendation: string;
+}

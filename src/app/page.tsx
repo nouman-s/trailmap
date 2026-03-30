@@ -11,6 +11,10 @@ import {
   PlusCircle,
   Eye,
   BarChart3,
+  DollarSign,
+  Target,
+  FileText,
+  Sparkles,
 } from "lucide-react";
 import { useAppStore } from "@/lib/store";
 import { formatCurrency, formatDate, getStatusColor, cn } from "@/lib/utils";
@@ -26,17 +30,19 @@ function KPICard({
   subtitle,
   icon: Icon,
   trend,
-  color,
+  trendUp,
+  colorClass,
 }: {
   title: string;
   value: string | number;
   subtitle: string;
   icon: React.ElementType;
   trend?: string;
-  color: string;
+  trendUp?: boolean;
+  colorClass: string;
 }) {
   return (
-    <Card className="relative overflow-hidden">
+    <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
       <CardContent className="p-6">
         <div className="flex items-start justify-between">
           <div className="space-y-2">
@@ -44,17 +50,18 @@ function KPICard({
             <p className="text-3xl font-bold tracking-tight">{value}</p>
             <p className="text-xs text-muted-foreground">{subtitle}</p>
           </div>
-          <div className={cn("rounded-xl p-3", color)}>
+          <div className={cn("rounded-xl p-3 transition-transform group-hover:scale-110 duration-300", colorClass)}>
             <Icon className="h-5 w-5 text-white" />
           </div>
         </div>
         {trend && (
-          <div className="mt-3 flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-            <TrendingUp className="h-3 w-3" />
+          <div className={cn("mt-3 flex items-center gap-1 text-xs font-medium", trendUp ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400")}>
+            <TrendingUp className={cn("h-3 w-3", !trendUp && "rotate-180")} />
             {trend}
           </div>
         )}
       </CardContent>
+      <div className={cn("absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300", colorClass.replace("p-3", ""))} />
     </Card>
   );
 }
@@ -129,7 +136,8 @@ export default function DashboardPage() {
           subtitle={`${campaigns.length} total campaigns`}
           icon={CalendarDays}
           trend="+2 this month"
-          color="bg-blue-600"
+          trendUp={true}
+          colorClass="bg-gradient-to-br from-blue-500 to-blue-600"
         />
         <KPICard
           title="Total Leads"
@@ -137,21 +145,22 @@ export default function DashboardPage() {
           subtitle="Across all campaigns"
           icon={Users}
           trend="+23% vs last month"
-          color="bg-emerald-600"
+          trendUp={true}
+          colorClass="bg-gradient-to-br from-emerald-500 to-emerald-600"
         />
         <KPICard
           title="Pending Approvals"
           value={pendingOrders.length}
           subtitle={`${orders.length} total orders`}
           icon={ClipboardCheck}
-          color="bg-amber-500"
+          colorClass="bg-gradient-to-br from-amber-500 to-amber-600"
         />
         <KPICard
           title="Upcoming Deadlines"
           value={3}
           subtitle="In the next 14 days"
           icon={Clock}
-          color="bg-violet-600"
+          colorClass="bg-gradient-to-br from-violet-500 to-violet-600"
         />
       </div>
 

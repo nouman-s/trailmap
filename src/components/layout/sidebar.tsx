@@ -12,6 +12,8 @@ import {
   UserCog,
   X,
   Mountain,
+  FileText,
+  Lightbulb,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/lib/store";
@@ -23,6 +25,8 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/campaigns", label: "Campaigns", icon: Megaphone },
   { href: "/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/templates", label: "Templates", icon: FileText },
+  { href: "/strategy", label: "Strategy", icon: Lightbulb },
   { href: "/reporting", label: "Reporting", icon: BarChart3 },
   { href: "/notifications", label: "Notifications", icon: Bell },
   { href: "/profiles", label: "Profiles & Prefs", icon: UserCog },

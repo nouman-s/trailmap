@@ -44,17 +44,18 @@ export function getInitials(name: string): string {
 
 export function getStatusColor(status: string): string {
   const colors: Record<string, string> = {
-    draft: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
-    submitted: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-    "under review": "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
-    approved: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
-    "in progress": "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400",
-    completed: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-    cancelled: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
-    active: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
-    paused: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
-    scheduled: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-    ended: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+    draft: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    submitted: "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400 border border-blue-200 dark:border-blue-800",
+    "under review": "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400 border border-amber-200 dark:border-amber-800",
+    approved: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800",
+    "in progress": "bg-violet-50 text-violet-700 dark:bg-violet-950/50 dark:text-violet-400 border border-violet-200 dark:border-violet-800",
+    completed: "bg-green-50 text-green-700 dark:bg-green-950/50 dark:text-green-400 border border-green-200 dark:border-green-800",
+    cancelled: "bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-400 border border-red-200 dark:border-red-800",
+    active: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800",
+    paused: "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400 border border-amber-200 dark:border-amber-800",
+    scheduled: "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400 border border-blue-200 dark:border-blue-800",
+    ended: "bg-zinc-100 text-zinc-600 dark:bg-zinc-800/60 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700",
+    rejected: "bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-400 border border-red-200 dark:border-red-800",
   };
-  return colors[status.toLowerCase()] || "bg-gray-100 text-gray-700";
+  return colors[status.toLowerCase()] || "bg-zinc-100 text-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300";
 }

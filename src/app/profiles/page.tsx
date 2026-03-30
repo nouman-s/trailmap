@@ -60,16 +60,24 @@ export default function ProfilesPage() {
 
   const canEdit = role === "internal" || role === "admin";
   const canAdd = role === "admin";
+  const isClient = role === "client";
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Profiles & Preferences
-        </h1>
-        <p className="text-muted-foreground">
-          Manage contacts, personas, targeting, and communication settings.
-        </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Profiles & Preferences
+          </h1>
+          <p className="text-muted-foreground">
+            Manage contacts, personas, targeting, and communication settings.
+          </p>
+        </div>
+        {role !== "client" && (
+          <Badge variant="outline" className="self-start text-xs">
+            {role === "admin" ? "Admin Access - Full Control" : "Internal Access - Limited Edit"}
+          </Badge>
+        )}
       </div>
 
       <Tabs defaultValue="contacts">

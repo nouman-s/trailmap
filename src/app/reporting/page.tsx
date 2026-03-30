@@ -23,6 +23,8 @@ import {
   Bar,
   LineChart,
   Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -84,81 +86,136 @@ export default function ReportingPage() {
 
       {/* KPI Summary */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="group hover:shadow-lg transition-all">
           <CardContent className="p-5">
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-blue-100 p-2.5 dark:bg-blue-900/30">
-                <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <div className="flex items-center justify-between">
+              <div className="rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 p-3 group-hover:scale-110 transition-transform">
+                <Users className="h-5 w-5 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Total Leads</p>
-                <p className="text-2xl font-bold">{totalLeads}</p>
+              <div className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                <TrendingUp className="h-3 w-3" />
+                +31%
               </div>
             </div>
-            <div className="mt-2 flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
-              <TrendingUp className="h-3 w-3" />
-              +31% vs prior period
+            <div className="mt-4">
+              <p className="text-sm text-muted-foreground">Total Leads</p>
+              <p className="text-3xl font-bold tracking-tight">{totalLeads}</p>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="group hover:shadow-lg transition-all">
           <CardContent className="p-5">
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-emerald-100 p-2.5 dark:bg-emerald-900/30">
-                <Target className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <div className="flex items-center justify-between">
+              <div className="rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-3 group-hover:scale-110 transition-transform">
+                <Target className="h-5 w-5 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Registrations</p>
-                <p className="text-2xl font-bold">{totalRegistrations}</p>
+              <div className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                <TrendingUp className="h-3 w-3" />
+                +28%
               </div>
             </div>
-            <div className="mt-2 flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
-              <TrendingUp className="h-3 w-3" />
-              +28% vs prior period
+            <div className="mt-4">
+              <p className="text-sm text-muted-foreground">Registrations</p>
+              <p className="text-3xl font-bold tracking-tight">{totalRegistrations}</p>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="group hover:shadow-lg transition-all">
           <CardContent className="p-5">
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-violet-100 p-2.5 dark:bg-violet-900/30">
-                <BarChart3 className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+            <div className="flex items-center justify-between">
+              <div className="rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 p-3 group-hover:scale-110 transition-transform">
+                <BarChart3 className="h-5 w-5 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Conversion Rate</p>
-                <p className="text-2xl font-bold">{conversionRate}%</p>
+              <div className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                <TrendingUp className="h-3 w-3" />
+                +5.2%
               </div>
             </div>
-            <div className="mt-2 flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
-              <TrendingUp className="h-3 w-3" />
-              +5.2% vs prior period
+            <div className="mt-4">
+              <p className="text-sm text-muted-foreground">Conversion Rate</p>
+              <p className="text-3xl font-bold tracking-tight">{conversionRate}%</p>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="group hover:shadow-lg transition-all">
           <CardContent className="p-5">
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-amber-100 p-2.5 dark:bg-amber-900/30">
-                <DollarSign className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Total Spend</p>
-                <p className="text-2xl font-bold">{formatCurrency(totalSpend)}</p>
+            <div className="flex items-center justify-between">
+              <div className="rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 p-3 group-hover:scale-110 transition-transform">
+                <DollarSign className="h-5 w-5 text-white" />
               </div>
             </div>
-            <div className="mt-2 text-xs text-muted-foreground">
-              Avg CPL: {formatCurrency(Math.round(totalSpend / totalLeads))}
+            <div className="mt-4">
+              <p className="text-sm text-muted-foreground">Total Spend</p>
+              <p className="text-3xl font-bold tracking-tight">{formatCurrency(totalSpend)}</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Avg CPL: {formatCurrency(Math.round(totalSpend / totalLeads))}
+              </p>
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Charts */}
-      <Tabs defaultValue="leads" className="space-y-4">
+      <Tabs defaultValue="overview" className="space-y-4">
         <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="leads">Leads & Registrations</TabsTrigger>
-          <TabsTrigger value="spend">Spend Over Time</TabsTrigger>
+          <TabsTrigger value="spend">Spend Analysis</TabsTrigger>
         </TabsList>
+
+        <TabsContent value="overview">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Performance Overview</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={400}>
+                <AreaChart data={performanceData}>
+                  <defs>
+                    <linearGradient id="colorLeads" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#2563eb" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
+                    </linearGradient>
+                    <linearGradient id="colorRegistrations" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                  <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "hsl(var(--card))",
+                      border: "1px solid hsl(var(--border))",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                    }}
+                  />
+                  <Legend />
+                  <Area
+                    type="monotone"
+                    dataKey="leads"
+                    stroke="#2563eb"
+                    strokeWidth={2.5}
+                    fillOpacity={1}
+                    fill="url(#colorLeads)"
+                    name="Leads"
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="registrations"
+                    stroke="#10b981"
+                    strokeWidth={2.5}
+                    fillOpacity={1}
+                    fill="url(#colorRegistrations)"
+                    name="Registrations"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
         <TabsContent value="leads">
           <Card>
