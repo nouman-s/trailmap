@@ -198,6 +198,7 @@ export default function OrdersPage() {
   const inProgressOrders = orders.filter(o => o.status === "In Progress");
   const completedOrders = orders.filter(o => o.status === "Completed");
   const cancelledOrders = orders.filter(o => o.status === "Cancelled");
+  const totalBudget = orders.reduce((sum, o) => sum + o.budget, 0);
 
   return (
     <div className="space-y-6">
@@ -214,52 +215,124 @@ export default function OrdersPage() {
         </Button>
       </div>
 
-      {/* Quick Stats Cards */}
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800">
-          <CardContent className="p-4">
+      {/* Quick Stats Cards - Dashboard Style */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-slate-500 to-slate-600 border-0 text-white">
+          <CardContent className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Drafts</p>
-                <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">{draftOrders.length}</p>
+                <p className="text-slate-200 text-sm font-medium">Total Orders</p>
+                <p className="text-3xl font-bold tracking-tight">{orders.length}</p>
+                <p className="text-xs text-slate-300 mt-1">All campaigns</p>
               </div>
-              <FileText className="h-8 w-8 text-blue-400" />
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <ShoppingCart className="h-6 w-6" />
+              </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950/30 dark:to-amber-900/20 border-amber-200 dark:border-amber-800">
-          <CardContent className="p-4">
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-blue-500 to-blue-600 border-0 text-white">
+          <CardContent className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-amber-600 dark:text-amber-400 font-medium">In Review</p>
-                <p className="text-2xl font-bold text-amber-700 dark:text-amber-300">{inReviewOrders.length}</p>
+                <p className="text-blue-100 text-sm font-medium">Drafts</p>
+                <p className="text-3xl font-bold tracking-tight">{draftOrders.length}</p>
+                <p className="text-xs text-blue-200 mt-1">In creation</p>
               </div>
-              <AlertCircle className="h-8 w-8 text-amber-400" />
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <FileText className="h-6 w-6" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-amber-500 to-amber-600 border-0 text-white">
+          <CardContent className="p-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-amber-100 text-sm font-medium">In Review</p>
+                <p className="text-3xl font-bold tracking-tight">{inReviewOrders.length}</p>
+                <p className="text-xs text-amber-200 mt-1">Awaiting approval</p>
+              </div>
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <AlertCircle className="h-6 w-6" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-violet-500 to-violet-600 border-0 text-white">
+          <CardContent className="p-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-violet-100 text-sm font-medium">In Progress</p>
+                <p className="text-3xl font-bold tracking-tight">{processingOrders.length + inProgressOrders.length + approvedOrders.length}</p>
+                <p className="text-xs text-violet-200 mt-1">Active campaigns</p>
+              </div>
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <PlayCircle className="h-6 w-6" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-green-500 to-green-600 border-0 text-white">
+          <CardContent className="p-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-green-100 text-sm font-medium">Completed</p>
+                <p className="text-3xl font-bold tracking-tight">{completedOrders.length}</p>
+                <p className="text-xs text-green-200 mt-1">Delivered</p>
+              </div>
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <CheckCircle2 className="h-6 w-6" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Budget Summary */}
+      <div className="grid gap-4 sm:grid-cols-3">
+        <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/20 border-emerald-200 dark:border-emerald-800">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="rounded-xl bg-emerald-500 p-3">
+                <DollarSign className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Total Budget</p>
+                <p className="text-xl font-bold text-emerald-700 dark:text-emerald-300">{formatCurrency(totalBudget)}</p>
+              </div>
             </div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-950/30 dark:to-cyan-900/20 border-cyan-200 dark:border-cyan-800">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-cyan-600 dark:text-cyan-400 font-medium">Processing</p>
-                <p className="text-2xl font-bold text-cyan-700 dark:text-cyan-300">{processingOrders.length + inProgressOrders.length}</p>
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="rounded-xl bg-cyan-500 p-3">
+                <Calendar className="h-5 w-5 text-white" />
               </div>
-              <PlayCircle className="h-8 w-8 text-cyan-400" />
+              <div>
+                <p className="text-xs text-cyan-600 dark:text-cyan-400 font-medium">Pending Approval</p>
+                <p className="text-xl font-bold text-cyan-700 dark:text-cyan-300">{inReviewOrders.length + pendingOrders.length + submittedOrders.length}</p>
+              </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/20 border-green-200 dark:border-green-800">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-green-600 dark:text-green-400 font-medium">Completed</p>
-                <p className="text-2xl font-bold text-green-700 dark:text-green-300">{completedOrders.length}</p>
+        <Card className="bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-950/30 dark:to-rose-900/20 border-rose-200 dark:border-rose-800">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="rounded-xl bg-rose-500 p-3">
+                <XCircle className="h-5 w-5 text-white" />
               </div>
-              <CheckCircle2 className="h-8 w-8 text-green-400" />
+              <div>
+                <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">Cancelled</p>
+                <p className="text-xl font-bold text-rose-700 dark:text-rose-300">{cancelledOrders.length}</p>
+              </div>
             </div>
           </CardContent>
         </Card>
