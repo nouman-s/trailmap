@@ -30,6 +30,8 @@ const STATUS_FLOW: OrderStatus[] = [
   "Draft",
   "Submitted",
   "Under Review",
+  "Pending",
+  "Processing",
   "Approved",
   "In Progress",
   "Completed",

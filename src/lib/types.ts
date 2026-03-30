@@ -4,10 +4,13 @@ export type OrderStatus =
   | "Draft"
   | "Submitted"
   | "Under Review"
+  | "Pending"
+  | "Processing"
   | "Approved"
   | "In Progress"
   | "Completed"
-  | "Cancelled";
+  | "Cancelled"
+  | "Rejected";
 
 export type CampaignStatus = "Active" | "Scheduled" | "Paused" | "Ended";
 

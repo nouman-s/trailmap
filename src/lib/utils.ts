@@ -44,18 +44,20 @@ export function getInitials(name: string): string {
 
 export function getStatusColor(status: string): string {
   const colors: Record<string, string> = {
-    draft: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
-    submitted: "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400 border border-blue-200 dark:border-blue-800",
-    "under review": "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400 border border-amber-200 dark:border-amber-800",
-    approved: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800",
-    "in progress": "bg-violet-50 text-violet-700 dark:bg-violet-950/50 dark:text-violet-400 border border-violet-200 dark:border-violet-800",
-    completed: "bg-green-50 text-green-700 dark:bg-green-950/50 dark:text-green-400 border border-green-200 dark:border-green-800",
-    cancelled: "bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-400 border border-red-200 dark:border-red-800",
-    active: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800",
-    paused: "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400 border border-amber-200 dark:border-amber-800",
-    scheduled: "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400 border border-blue-200 dark:border-blue-800",
-    ended: "bg-zinc-100 text-zinc-600 dark:bg-zinc-800/60 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700",
-    rejected: "bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-400 border border-red-200 dark:border-red-800",
+    draft: "bg-[#6b7280]/10 text-[#6b7280] border border-[#6b7280]/20 dark:bg-[#6b7280]/20",
+    submitted: "bg-[#3b82f6]/10 text-[#3b82f6] border border-[#3b82f6]/20 dark:bg-[#3b82f6]/20",
+    "under review": "bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/20 dark:bg-[#f59e0b]/20",
+    approved: "bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/20 dark:bg-[#10b981]/20",
+    "in progress": "bg-[#8b5cf6]/10 text-[#8b5cf6] border border-[#8b5cf6]/20 dark:bg-[#8b5cf6]/20",
+    processing: "bg-[#06b6d4]/10 text-[#06b6d4] border border-[#06b6d4]/20 dark:bg-[#06b6d4]/20",
+    pending: "bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/20 dark:bg-[#f59e0b]/20",
+    completed: "bg-[#22c55e]/10 text-[#22c55e] border border-[#22c55e]/20 dark:bg-[#22c55e]/20",
+    cancelled: "bg-[#ef4444]/10 text-[#ef4444] border border-[#ef4444]/20 dark:bg-[#ef4444]/20",
+    rejected: "bg-[#ef4444]/10 text-[#ef4444] border border-[#ef4444]/20 dark:bg-[#ef4444]/20",
+    active: "bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/20 dark:bg-[#10b981]/20",
+    paused: "bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/20 dark:bg-[#f59e0b]/20",
+    scheduled: "bg-[#3b82f6]/10 text-[#3b82f6] border border-[#3b82f6]/20 dark:bg-[#3b82f6]/20",
+    ended: "bg-[#6b7280]/10 text-[#6b7280] border border-[#6b7280]/20 dark:bg-[#6b7280]/20",
   };
-  return colors[status.toLowerCase()] || "bg-zinc-100 text-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300";
+  return colors[status.toLowerCase()] || "bg-[#6b7280]/10 text-[#6b7280] border border-[#6b7280]/20";
 }
