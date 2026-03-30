@@ -295,43 +295,46 @@ export default function OrdersPage() {
 
       {/* Budget Summary */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/20 border-emerald-200 dark:border-emerald-800">
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-emerald-500 to-emerald-600 border-0 text-white">
           <CardContent className="p-5">
-            <div className="flex items-center gap-4">
-              <div className="rounded-xl bg-emerald-500 p-3">
-                <DollarSign className="h-5 w-5 text-white" />
-              </div>
+            <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Total Budget</p>
-                <p className="text-xl font-bold text-emerald-700 dark:text-emerald-300">{formatCurrency(totalBudget)}</p>
+                <p className="text-emerald-100 text-sm font-medium">Total Budget</p>
+                <p className="text-2xl font-bold tracking-tight">{formatCurrency(totalBudget)}</p>
+                <p className="text-xs text-emerald-200 mt-1">All campaigns</p>
+              </div>
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <DollarSign className="h-6 w-6" />
               </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-950/30 dark:to-cyan-900/20 border-cyan-200 dark:border-cyan-800">
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-cyan-500 to-cyan-600 border-0 text-white">
           <CardContent className="p-5">
-            <div className="flex items-center gap-4">
-              <div className="rounded-xl bg-cyan-500 p-3">
-                <Calendar className="h-5 w-5 text-white" />
-              </div>
+            <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-cyan-600 dark:text-cyan-400 font-medium">Pending Approval</p>
-                <p className="text-xl font-bold text-cyan-700 dark:text-cyan-300">{inReviewOrders.length + pendingOrders.length + submittedOrders.length}</p>
+                <p className="text-cyan-100 text-sm font-medium">Pending Approval</p>
+                <p className="text-2xl font-bold tracking-tight">{inReviewOrders.length + pendingOrders.length + submittedOrders.length}</p>
+                <p className="text-xs text-cyan-200 mt-1">Awaiting review</p>
+              </div>
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <Calendar className="h-6 w-6" />
               </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-950/30 dark:to-rose-900/20 border-rose-200 dark:border-rose-800">
+        <Card className="group hover:shadow-xl transition-all bg-gradient-to-br from-rose-500 to-rose-600 border-0 text-white">
           <CardContent className="p-5">
-            <div className="flex items-center gap-4">
-              <div className="rounded-xl bg-rose-500 p-3">
-                <XCircle className="h-5 w-5 text-white" />
-              </div>
+            <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">Cancelled</p>
-                <p className="text-xl font-bold text-rose-700 dark:text-rose-300">{cancelledOrders.length}</p>
+                <p className="text-rose-100 text-sm font-medium">Cancelled</p>
+                <p className="text-2xl font-bold tracking-tight">{cancelledOrders.length}</p>
+                <p className="text-xs text-rose-200 mt-1">Not proceeding</p>
+              </div>
+              <div className="rounded-xl bg-white/20 p-3 group-hover:scale-110 transition-transform">
+                <XCircle className="h-6 w-6" />
               </div>
             </div>
           </CardContent>
